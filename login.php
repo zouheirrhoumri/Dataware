@@ -1,50 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-
-    <!-- Include Tailwind CSS from CDN -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Include Alpine.js from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+    <title>DataWare</title>
 </head>
 
-<body>
-    <div class="min-h-screen py-12" style="background-image: linear-gradient(115deg, rgb(51, 51, 51), #000000)">
-        <div class="container mx-auto">
-            <div class="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
-                <div class="w-full lg:w-1/2 flex flex-col items-center p-12 bg-no-repeat bg-cover bg-center" style="background-image: url('images/Register-Background.png');">
-                    <img src="images/white.png" alt="" class="w-6/6">
-                </div>
-                <div class="w-full lg:w-1/2 py-32 px-12">
-                    <h2 class="text-3xl mb-4">Log In</h2>
+<body class="bg-blue-500">
+    <section>
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1 class="text-xl font-bold leading-tight flex justify-center tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        Connexion
+                    </h1>
+                    <?php
+                    require('connection.php');
+                    $message = '';
 
-                    <form action="#">
-                        <div class="mt-5">
-                            <input type="text" placeholder="Email" class="border border-gray-400 py-1 px-2 w-full">
-                        </div>
-                        <div class="mt-5">
-                            <input type="password" placeholder="Password" class="border border-gray-400 py-1 px-2 w-full">
-                        </div>
-                        <div class="mt-5">
-                            <span>
-                                Not registered ? <a href="signup.php" class="text-purple-500 font-semibold">Register here</a>
-                            </span>
-                        </div>
-                        <div class="mt-5">
-                            <button class="w-full bg-cyan-500 py-3 text-center text-white">Log In</button>
-                        </div>
+                    if (isset($_POST['email']) && isset($_POST['pass'])) {
+                        $email = $_POST['email'];
+                        $password = $_POST['pass'];
 
+                        $query = "SELECT * FROM `utilisateur` WHERE email='$email' AND pass='$password'";
+
+                        $result = mysqli_query($conn, $query);
+
+                        if ($result !== false) {
+                            $userData = mysqli_fetch_assoc($result);
+
+                            if ($userData) {
+                                session_start();
+                                $_SESSION['id'] = $userData['id'];
+                                $role = $userData['role'];
+
+                                switch ($role) {
+                                    case 'membre':
+                                        $_SESSION['email'] = $email;
+                                        header("Location: dashboardm.php");
+                                        exit();
+                                    case 'ProductOwner':
+                                        $_SESSION['email'] = $email;
+                                        header("Location: dashboardp.php");
+                                        exit();
+                                    case 'ScrumMaster':
+                                        $_SESSION['email'] = $email;
+                                        header("Location: dashboards.php");
+                                        exit();
+                                }
+                            } else {
+                                $message = "L'email ou le mot de passe est incorrect.";
+                            }
+                        } else {
+                            $message = "Erreur de requête SQL : " . mysqli_error($conn);
+                        }
+                    }
+                    ?>
+                    <form class="space-y-4 md:space-y-6" action="" method="post" name="login">
+                        <div>
+                            <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre email</label>
+                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="exemple@gmail.com" required="">
+                        </div>
+                        <div>
+                            <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mot de passe</label>
+                            <input type="password" name="pass" id="" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                        </div>
+                        <button type="submit" name="submit" class="w-full text-white bg-sky-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Se Connecter</button>
+                        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                            Vous n'avez pas un compte? <a href="register.php" class="font-medium text-sky-600  hover:underline dark:text-primary-500">Créer un compte</a>
+                        </p>
+                        <?php if (!empty($message)) { ?>
+                            <p class="errorMessage"><?php echo $message; ?></p>
+                        <?php } ?>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-    <script type="module" src="/main.js"></script>
+    </section>
 </body>
 
 </html>
