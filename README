@@ -1,27 +1,28 @@
-Readme - Projet de Gestion des Ressources Humaines pour DataWare
-Bienvenue dans le projet de développement de l'interface de gestion des ressources humaines pour DataWare. Ce projet vise à révolutionner la manière dont l'entreprise gère ses équipes et ses projets, en mettant en œuvre une interface conviviale et sécurisée. Les technologies clés utilisées dans ce projet comprennent PHP, MySQL, HTML5, CSS3, Git, et les concepts de l'UML.
 
-Objectif du Projet
-L'objectif principal de ce projet est de concevoir et implémenter une interface efficace pour la gestion des ressources humaines, répondant aux exigences spécifiques de DataWare. Cela inclut la création d'utilisateurs, la gestion de projets, l'attribution d'équipes, et d'autres fonctionnalités cruciales pour l'organisation interne de l'entreprise.
+Readme - Human Resources Management Project for DataWare
+Welcome to the project for developing the human resources management interface for DataWare. The goal of this project is to revolutionize how the company handles its teams and projects by implementing a user-friendly and secure interface. Key technologies used in this project include PHP, MySQL, HTML5, CSS3, Git, and UML concepts.
 
-Technologies Utilisées
-PHP : Utilisé pour le développement côté serveur, ce langage de programmation puissant permet d'implémenter les fonctionnalités nécessaires à la gestion des ressources humaines.
+Project Objective
+This project aims to design and implement an efficient interface for human resources management, meeting the specific needs of DataWare. This includes user creation, project management, team assignment, and other crucial features for the internal organization of the company.
 
-MySQL : La base de données relationnelle qui stockera les informations critiques sur les utilisateurs, les équipes et les projets.
+Technologies Used
+PHP: Used for server-side development, this powerful programming language is employed to implement the necessary features for human resources management.
 
-HTML5/CSS3 : Ces technologies sont utilisées pour concevoir une interface utilisateur moderne et réactive, garantissant une expérience visuelle optimale.
+MySQL: The relational database that will store critical information about users, teams, and projects.
 
-Git : Système de contrôle de version pour assurer la collaboration efficace et le suivi des modifications apportées au code source.
+HTML5/CSS3: These technologies are used to design a modern and responsive user interface, ensuring an optimal visual experience.
 
-UML : Les diagrammes UML, y compris les diagrammes de cas d'utilisation, de classe et de séquence, sont utilisés pour représenter clairement les structures et les relations du système.
+Git: Version control system to ensure effective collaboration and track changes made to the source code.
 
-Fonctionnalités Principales
-Le système implémentera les fonctionnalités suivantes en réponse aux user stories définies :
+UML: UML diagrams, including use case, class, and sequence diagrams, are used to clearly represent the structures and relationships of the system.
 
-Authentification : Les utilisateurs pourront s'inscrire et s'authentifier via un login et un mot de passe pour accéder à la plateforme.
+Key Features
+The system will implement the following features in response to the defined user stories:
 
-Gestion de Projets et d'Équipes : Les utilisateurs pourront consulter, créer, modifier et supprimer des projets ainsi que gérer les équipes associées.
+Authentication: Users will be able to register and authenticate using a login and password to access the platform.
 
-Attribution de Rôles : Les Product Owners pourront assigner des Scrum Masters à des projets spécifiques, définissant ainsi leurs rôles respectifs.
+Project and Team Management: Users can view, create, modify, and delete projects and manage associated teams.
 
-Gestion des Équipes : Les Scrum Masters pourront créer, modifier et supprimer des équipes, ajuster les effectifs en ajoutant ou supprimant des membres, et affecter des équipes à des projets spécifiques.
+Role Assignment: Product Owners can assign Scrum Masters to specific projects, defining their respective roles.
+
+Team Management: Scrum Masters can create, modify, and delete teams, adjust staffing by adding or removing members, and assign teams to specific projects.
